@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { backendUrl } from "../Globals";
 import AddFriendComponent from "./AddFriendComponent";
-import {List} from 'antd'
+import {Button, List, Alert} from 'antd'
 
 let FriendsComponent = (props) => {
 
@@ -23,12 +23,26 @@ let FriendsComponent = (props) => {
             setMessage(jsonData.error)
         }
     }
+
+    let deleteFriend = async(email)=>{
+        let response = await fetch(backendUrl+"/friends?emailFriend="+email+"&apiKey="+localStorage.getItem("apiKey"),{
+            method: "DELETE"
+        })
+        if(response.ok){
+            getMyFriends()
+            createNotification("Friend is deleted","success")
+        }else{
+            let jsonData = await response.json()
+            createNotification(jsonData.error)
+        }
+    }
     return (
         <>
+            {message!="" && <Alert type='error' message={message}/>}
             <List size="large" header={<h2>My Friends</h2>} bordered dataSource={friends} renderItem={(f)=>(
                 <List.Item>
-                        
                         <p>{f.emailFriend}</p>
+                        <Button onClick={()=>deleteFriend(f.emailFriend)}>Delete</Button>
                 </List.Item>
             )}>
             </List>

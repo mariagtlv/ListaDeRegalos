@@ -33,6 +33,8 @@ let AddPresentComponent = ( props)=>{
             newErrors.description= "Description must have a value"
         if( present.price <0 )
             newErrors.price= "The price must have a positive value"
+        if( present.price ="" )
+            newErrors.price= "You must add a price"
         if( present.url == "" )
             newErrors.url= "Url must have a value"
         setError(newErrors)
@@ -67,13 +69,13 @@ let AddPresentComponent = ( props)=>{
             <Col>
                 {message!="" && <Alert type='error' message={message}/>}
                 <Card title="Add Present" style={{width: "500px"}}>
-                    <Input type="text" placeholder="name" onChange={(e)=>changeProperty("name",e)}/>
+                    <Input type="text" placeholder="name" style={{marginBottom: "10px"}} onChange={(e)=>changeProperty("name",e) }/>
                     {error.name && <Text type="danger">{error.name}</Text>}
-                    <Input type="text" placeholder="description" onChange={(e)=>changeProperty("description",e)}/>
+                    <Input type="text" placeholder="description"  style={{marginBottom: "10px"}}  onChange={(e)=>changeProperty("description",e)}/>
                     {error.description && <Text type="danger">{error.description}</Text>}
-                    <Input type="number" placeholder="price" onChange={(e)=>changeProperty("price",e)}/>
+                    <Input type="number" placeholder="price"  style={{marginBottom: "10px"}} onChange={(e)=>changeProperty("price",e)}/>
                     {error.price && <Text type="danger">{error.price}</Text>}
-                    <Input type="text" placeholder="url" onChange={(e)=>changeProperty("url",e)}/>
+                    <Input type="text" placeholder="url"  style={{marginBottom: "10px"}} onChange={(e)=>changeProperty("url",e)}/>
                     {error.url && <Text type="danger">{error.url}</Text>}
                     <Button type="primary" onClick={addPresentButton} block>Add Present</Button>
                 </Card>

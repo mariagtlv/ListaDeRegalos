@@ -8,6 +8,7 @@ let AddFriendComponent = (props) => {
     let [message,setMessage]=useState("")
 
     let addFriend = async() => {
+        setMessage("")
         let response = await fetch(backendUrl+"/friends?apiKey="+localStorage.getItem("apiKey"),{
             method: "POST",
             headers: {"Content-Type":"application/json"},

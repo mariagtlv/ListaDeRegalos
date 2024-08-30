@@ -52,7 +52,7 @@ let PresentsOfUserComponent = (props) =>{
     }
     return (
         <>
-            <Row>
+            <Row align="middle" justify="center" style={{marginTop:"50px"}}>
                 <Col>
                     <Card title="Find Present by User" style={{width: "500px"}}>
                         <Input  size='large' type='text' placeholder='Email' onChange={(e)=>setEmail(e.currentTarget.value)}/>

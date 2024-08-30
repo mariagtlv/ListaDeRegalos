@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import FriendsComponent from './Components/FriendsComponent';
 import {Layout, Menu, notification} from 'antd';
 import { Content, Footer, Header } from 'antd/es/layout/layout';
+import IndexComponent from './Components/IndexComponent';
 
 function App() {
   let [api,contextHolder]=notification.useNotification()
@@ -32,6 +33,8 @@ function App() {
   },
   [])
 
+  
+
   let checkIfLogin = () =>{
     if(localStorage.getItem("apiKey")!=null){
       setLogin(true)
@@ -41,9 +44,12 @@ function App() {
   }
 
   let disconnect = () =>{
+    
     localStorage.removeItem("apiKey")
     setLogin(false)
-    navigate("/login")
+    setTimeout(() => {
+      navigate("/login");
+  }, 0);
   }
 
   return (
@@ -69,6 +75,7 @@ function App() {
         </Header>
         <Content>
           <Routes>
+            <Route path="/" element={<IndexComponent/>}></Route>
             <Route path="/register" element={<RegisterUserComponent/>}></Route>
             <Route path="/login" element={<LoginUserComponent setLogin={setLogin}/>}></Route>
             <Route path="/addPresent" element={<AddPresentComponent createNotification={createNotification}/>}></Route>
