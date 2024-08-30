@@ -100,8 +100,8 @@ button:hover {
 .notification {
     position: relative;
     background-color: #ffffff;
-    border: 1px solid #ffcccc;
-    color: #cc0000;
+    border: 1px solid #3f3a3a;
+    color: #3f3a3a;
     padding: 12px;
     margin-bottom: 15px;
     border-radius: 5px;
