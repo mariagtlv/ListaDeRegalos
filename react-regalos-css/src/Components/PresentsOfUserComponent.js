@@ -1,13 +1,11 @@
 import { useState,useEffect } from "react";
 import { backendUrl } from "../Globals";
-import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Input, Row, Alert, List } from 'antd'
+import { Link, useNavigate } from "react-router-dom";
 
 let PresentsOfUserComponent = (props) =>{
     let {createNotification}=props
     let [email,setEmail] = useState("")
     let [presents,setPresents]=useState([])
-    let [message,setMessage]=useState("")
     let navigate = useNavigate()
 
     useEffect(()=>{
@@ -23,7 +21,6 @@ let PresentsOfUserComponent = (props) =>{
     }
 
     let findUser = async()=>{
-        setMessage("")
         let response = await fetch(backendUrl+"/presents?apiKey="+localStorage.getItem("apiKey")+"&userEmail="+email)
         if(response.ok){
             let jsonData = await response.json()
@@ -50,26 +47,26 @@ let PresentsOfUserComponent = (props) =>{
         }
     }
     return (
-        <>
-            <Row align="middle" justify="center" style={{marginTop:"50px", marginBottom: "20px"}}>
-                <Col>
-                    <Card title="Find Present by User" style={{width: "500px"}}>
-                        <Input  size='large' type='text' placeholder='Email' onChange={(e)=>setEmail(e.currentTarget.value)}/>
-                        <Button style={{marginTop: "10px"}} type='primary' onClick={findUser} block>Find</Button>
-                    </Card>
-                </Col>
-            </Row>
+        <div>
+            
+            <h2>Find present by user</h2>
+            <div className="find-present-container">
+                <input type='text' placeholder="email" onChange={(e)=>setEmail(e.currentTarget.value)}/>
+                <button onClick={findUser}>Find</button>
+            </div>
+
             {presents.length>0 && (
-                
-                <List size="large" header={<h2>Presents by {presents[0].email}</h2>} bordered dataSource={presents} renderItem={(p)=>(
-                    <List.Item>
+                <div className="presents-container">
+                <h2>Presents by {presents[0].email}</h2>
+                <ul>
+                    {presents.map(p=><li>
                             <p>{p.name}</p>
-                            <Button onClick={()=>giftPresent(p.id)}>Gift</Button>
-                    </List.Item>
-                )}>
-                </List>
+                            <button onClick={()=>giftPresent(p.id)}>Gift</button>
+                        </li>)}
+                </ul>
+                </div>
             )}
-        </>
+        </div>
     )
 }
 

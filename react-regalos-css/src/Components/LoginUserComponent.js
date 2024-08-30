@@ -1,7 +1,6 @@
 import { useState,useEffect } from "react";
 import {backendUrl} from "../Globals"
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Input, Row, Typography, Alert } from 'antd'
 
 let LoginUserComponent = (props) =>{
     let [password,setPassword] =useState(null)
@@ -55,23 +54,20 @@ let LoginUserComponent = (props) =>{
                 setMessage(jsonData.error)
         }
     }
-    let {Text}=Typography
 
     return (
 
-        <Row align="middle" style={{minHeight:"70vh"}} justify="center">
-            
-            <Col>
-                {message!="" && <Alert type='error' message={message}/>}
-                <Card title="Log In" style={{width: "500px"}}>
-                    <Input  size='large' type='text' placeholder='Email' onChange={(e)=>setEmail(e.currentTarget.value)}/>
-                    {error.email && <Text type='danger'>{error.email}</Text>}
-                    <Input style={{marginTop: "10px"}} size='large' type='text' placeholder='Password' onChange={(e)=>setPassword(e.currentTarget.value)}/>
-                    {error.password && <Text type='danger'>{error.password}</Text>}
-                    <Button style={{marginTop: "10px"}} type='primary' onClick={loginUser} block>Enter</Button>
-                </Card>
-            </Col>
-        </Row>
+        <div className="login-container">
+            <h2>Log In</h2>
+            {message!="" && <h3>{message}</h3>}
+            <div>
+                <input type='text' placeholder='email' onChange={(e)=>setEmail(e.currentTarget.value)}/>
+                {error.email && <p>{error.email}</p>}
+                <input type='text' placeholder='password' onChange={(e)=>setPassword(e.currentTarget.value)}/>
+                {error.password && <p>{error.password}</p>}
+            </div>
+            <button onClick={loginUser}>Enter</button>
+        </div>
     )
 }
 

@@ -1,7 +1,6 @@
 import { useState,useEffect } from "react";
 import { backendUrl } from "../Globals";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Input, Row , Typography, Alert} from "antd";
 let AddPresentComponent = ( props)=>{
     let [present,setPresent] = useState({})
     let [message,setMessage] = useState("")
@@ -63,24 +62,23 @@ let AddPresentComponent = ( props)=>{
 
     }
 
-    let {Text}=Typography;
     return (
-        <Row align="middle" style={{minHeight: "70vh"}} justify="center">
-            <Col>
-                {message!="" && <Alert type='error' message={message}/>}
-                <Card title="Add Present" style={{width: "500px"}}>
-                    <Input type="text" placeholder="name" style={{marginBottom: "10px"}} onChange={(e)=>changeProperty("name",e) }/>
-                    {error.name && <Text type="danger">{error.name}</Text>}
-                    <Input type="text" placeholder="description"  style={{marginBottom: "10px"}}  onChange={(e)=>changeProperty("description",e)}/>
-                    {error.description && <Text type="danger">{error.description}</Text>}
-                    <Input type="number" placeholder="price"  style={{marginBottom: "10px"}} onChange={(e)=>changeProperty("price",e)}/>
-                    {error.price && <Text type="danger">{error.price}</Text>}
-                    <Input type="text" placeholder="url"  style={{marginBottom: "10px"}} onChange={(e)=>changeProperty("url",e)}/>
-                    {error.url && <Text type="danger">{error.url}</Text>}
-                    <Button type="primary" onClick={addPresentButton} block>Add Present</Button>
-                </Card>
-            </Col>
-        </Row>
+        <div>
+        <h2>Add Present</h2>
+        {message!="" && <h3>{message}</h3>}
+        <div className="add-present-container">
+            <input type='text' placeholder="name" onChange={(e)=>changeProperty("name",e)}/>
+            {error.name&&<p>{error.name}</p>}
+            <input type='text' placeholder="description" onChange={(e)=>changeProperty("description",e)}/>
+            {error.description&&<p>{error.description}</p>}
+            <input type='number' placeholder="price" onChange={(e)=>changeProperty("price",e)}/>
+            {error.price&&<p>{error.price}</p>}
+            <input type='text' placeholder="url" onChange={(e)=>changeProperty("url",e)}/>
+            {error.url&&<p>{error.url}</p>}
+            <button onClick={addPresentButton}>Add Present</button>
+        </div>
+        
+    </div>
     )
 }
 

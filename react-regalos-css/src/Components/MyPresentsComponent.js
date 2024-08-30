@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { backendUrl } from "../Globals";
 import { Link, useNavigate } from "react-router-dom";
-import {List, Card} from 'antd'
 let MyPresentsComponent = ( )=>{
     let [myPresents,setMyPresents] = useState([])
     let navigate = useNavigate()
@@ -24,29 +23,18 @@ let MyPresentsComponent = ( )=>{
     }
 
     return (
-        <>
-            
-            <List header={<h2>My Presents</h2>} grid={ {
-                gutter: 16,
-                xs: 1,
-                sm: 2,
-                md: 4,
-                lg: 4,
-                xl: 6,
-                xxl: 6
-            }} style={{marginLeft: "15px", marginRight: "15px"} } bordered dataSource={myPresents} renderItem={ (p)=> (
-                <List.Item>
-                    <Card title={p.name} style={{marginTop: "10px"}}>
-                        <Link to={"/present/"+p.id}>{p.description}
-                        </Link>
-                    </Card>
-                    
-                    
-                    
-                </List.Item>
-            )}>
-            </List>
-        </>
+        <div>
+        <h2>My Presents</h2>
+        {myPresents.length>0 && (
+            <ul className="present-list">
+            {myPresents.map(p=>(<li className="present-list-item">
+                <Link to={"/present/"+p.id} className="present-link">
+                {p.name}
+                </Link>
+            </li>))}
+        </ul>)}
+        
+    </div>
     )
 }
 

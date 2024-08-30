@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { backendUrl } from "../Globals";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Button, Col, Descriptions, Input, Row, Typography } from 'antd';
 let PresentComponent = ( props)=>{
     let [present,setPresent]=useState({})
     let [message,setMessage]=useState("")
@@ -48,35 +47,21 @@ let PresentComponent = ( props)=>{
         navigate("/edit/"+id)
     }
 
-    let {Text}=Typography;
 
     return (
         <div>
-            {message!=""&&<Text type="alert">{message}</Text>}
-            <Descriptions title={present.name} layout='vertical' style={{margin: "10px"}}>
-                <Descriptions.Item label="Description" span={3}>{present.description}</Descriptions.Item>
-                <Descriptions.Item label="Price">{present.price} €</Descriptions.Item>
-                <Descriptions.Item label="Posted by">{present.email}</Descriptions.Item>
-                {present.chosenBy!=null && <Descriptions.Item label="Gifted by">{present.chosenBy}</Descriptions.Item>}
-                
-                {localStorage.getItem("email")==present.email && (
-
-                
-                <Descriptions.Item span={3}>
-                    <Row justify="center" style={{width: "100%"}}>
-                        <Col style={{margin: "10px"}}>
-                            <Button type='primary' onClick={editPresent} style={{marginRight: "10px"}} block>Edit</Button>
-                        </Col>
-                        <Col style={{margin: "10px"}}>
-                            <Button type='primary' onClick={deletePresent} style={{marginRight: "10px"}}  block>Delete</Button>
-                        </Col>
-                    </Row>
-                    
-                </Descriptions.Item>
-                )}
-                
-            </Descriptions>
+        <h2>Present</h2>
+        <div className="present-container">
+            {message!=""&&<h3>{message}</h3>}
+            <p>Name: {present.name}</p>
+            <p>Description: {present.description}</p>
+            <p>Price: {present.price} €</p>
+            <p>Posted by: {present.email}</p>
+            <button onClick={editPresent}>Edit</button>
+            <button onClick={deletePresent}>Delete</button>
         </div>
+        
+    </div>
 
 )
 }

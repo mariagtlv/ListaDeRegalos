@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import {backendUrl} from "../Globals"
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Input, Row , Typography, Alert} from "antd";
 
 let RegisterUserComponent = () =>{
     let [name,setName] =useState(null)
-    let [password,setPassword] =useState("")
+    let [password,setPassword] =useState(null)
     let [email,setEmail] =useState(null)
 
     let [message,setMessage]=useState("")
@@ -51,23 +50,26 @@ let RegisterUserComponent = () =>{
         }
     }
 
-    let {Text} = Typography
-
     return (
-        <Row align="middle" style={{minHeight: "70vh"}} justify="center">
-            <Col>
-                {message!="" && <Alert type='error' message={message}/>}
-                <Card title="Register" style={{width: "500px"}}>
-                    <Input type="text" placeholder="email" onChange={(e)=>setEmail(e.currentTarget.value)}/>
-                    {error.email && <Text type="danger">{error.email}</Text>}
-                    <Input type="text" placeholder="name" onChange={(e)=>setName(e.currentTarget.value)}/>
-                    {error.name && <Text type="danger">{error.email}</Text>}
-                    <Input type="text" placeholder="password" onChange={(e)=>setPassword(e.currentTarget.value)}/>
-                    {error.password && <Text type="danger">{error.email}</Text>}
-                    <Button type="primary" onClick={registerUser} block>Register</Button>
-                </Card>
-            </Col>
-        </Row>
+        <div className="register-container">
+            <h2>Register User</h2>
+            <h3>{message}</h3>
+            <div>
+                <div>
+                    <input type='text' placeholder='email' onChange={(e)=>setEmail(e.currentTarget.value)}/>
+                </div>
+                {error.email && <p>{error.email}</p>}
+                <div>
+                    <input type='text' placeholder='name' onChange={(e)=>setName(e.currentTarget.value)}/>
+                </div>
+                {error.name && <p>{error.name}</p>}
+                <div>
+                    <input type='text' placeholder='password' onChange={(e)=>setPassword(e.currentTarget.value)}/>
+                </div>
+                {error.password && <p>{error.password}</p>}
+            </div>
+            <button onClick={registerUser}>Register</button>
+        </div>
     )
 }
 

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { backendUrl } from "../Globals";
 import {  useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Input, Row,  Alert } from 'antd'
 let EditPresentComponent = (props )=>{
     let [present,setPresent]=useState({})
     let [message,setMessage]=useState("")
@@ -51,19 +50,19 @@ let EditPresentComponent = (props )=>{
     }
 
     return (
-        <Row align="middle" style={{minHeight:"70vh"}} justify="center">
+        <div>
+        <h2>Edit Present</h2>
+        <div className="present-edit">
+            {message!=""&&<h3>{message}</h3>}
+            <input type="text" placeholder="name" value={present.name} onChange={(e)=>{changeProperty("name",e)}}/>
+            <input type="text" placeholder="description" value={present.description} onChange={(e)=>{changeProperty("description",e)}}/>
+            <input type="text" placeholder="url" value={present.url} onChange={(e)=>{changeProperty("url",e)}}/>
+            <input type="number" placeholder="price" value={present.price} onChange={(e)=>{changeProperty("price",e)}}/>
             
-            <Col>
-                {message!="" && <Alert type='error' message={message}/>}
-                <Card title="Edit Present" style={{width: "500px"}}>
-                    <Input  size='large' type='text' placeholder='Name' value={present.name} onChange={(e)=>{changeProperty("name",e)}}/>
-                    <Input  size='large' type='text' placeholder='Description' value={present.description} onChange={(e)=>{changeProperty("description",e)}}/>
-                    <Input  size='large' type='text' placeholder='Url' value={present.url} onChange={(e)=>{changeProperty("url",e)}}/>
-                    <Input  size='large' type='number' placeholder='Price' value={present.price} onChange={(e)=>{changeProperty("price",e)}}/>
-                    <Button style={{marginTop: "10px"}} type='primary' onClick={editPresent} block>Edit</Button>
-                </Card>
-            </Col>
-        </Row>
+            <button onClick={editPresent}>Edit</button>
+        </div>
+        
+    </div>
 )
 }
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { backendUrl } from "../Globals";
 import AddFriendComponent from "./AddFriendComponent";
-import {Button, List, Alert} from 'antd'
 
 let FriendsComponent = (props) => {
 
@@ -37,17 +36,23 @@ let FriendsComponent = (props) => {
         }
     }
     return (
-        <>
-            {message!="" && <Alert type='error' message={message}/>}
-            <List size="large" header={<h2>My Friends</h2>} bordered dataSource={friends} renderItem={(f)=>(
-                <List.Item>
-                        <p>{f.emailFriend}</p>
-                        <Button onClick={()=>deleteFriend(f.emailFriend)}>Delete</Button>
-                </List.Item>
-            )}>
-            </List>
-            <AddFriendComponent getMyFriends={getMyFriends} createNotification={createNotification}/>
-        </>
+        <div>
+            <div className="friends-container">
+                {message!=""&&<p>{message}</p>}
+                <h2>My Friends</h2>
+                {friends.length>0 &&
+                    <ul className="friends-list">
+                        {friends.map(f=>(
+                            <div  className="friend-item">
+                                <li>{f.emailFriend}</li>
+                                <button onClick={()=>deleteFriend(f.emailFriend)}>Delete</button>
+                            </div>
+                        ))}
+                    </ul>
+                }
+            </div>
+        <AddFriendComponent getMyFriends={getMyFriends} createNotification={createNotification}/>
+        </div>
 
     )
 }

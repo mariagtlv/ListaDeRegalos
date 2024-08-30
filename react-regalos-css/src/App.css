@@ -1,0 +1,441 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e6f7ff;
+}
+  
+.main-container {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+}
+  
+h1, h2, h3 {
+    text-align: center;
+    color: #005073;
+}
+  
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #007b9e;
+    border-bottom: 2px solid #005073;
+}
+  
+.navbar li {
+    float: left;
+}
+
+.navbar ul {
+    list-style-type: none;
+}
+  
+.navbar li a {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 16px 18px;
+    text-decoration: none;
+    font-weight: bold;
+}
+  
+.navbar li a:hover {
+    background-color: #004d73;
+}
+  
+.center-box {
+    max-width: 450px;
+    margin: 25px auto;
+    padding: 25px;
+    background-color: #f0f9ff;
+    border: 1px solid #b3e0ff;
+    border-radius: 5px;
+}
+  
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+}
+  
+input {
+    padding: 12px;
+    border: 1px solid #b3e0ff;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+  
+button {
+    padding: 12px 25px;
+    background-color: #006080;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+  
+button:hover {
+    background-color: #004c66;
+}
+  
+.errorMessage {
+    text-align: center;
+    color: #cc0000;
+}
+  
+.errorForm {
+    color: #cc0000;
+}
+  
+.notification {
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #ffcccc;
+    color: #cc0000;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+  
+.close-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 16px;
+    color: #999999;
+    cursor: pointer;
+}
+  
+.present-edit {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+  
+
+.present-edit input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #b3e0ff;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%; 
+    box-sizing: border-box; 
+}
+  
+.add-present-container {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+  
+
+.add-present-container input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #b3e0ff;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+.add-present-container button {
+    padding: 12px 20px;
+    background-color: #007b9e;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.add-present-container button:hover {
+    background-color: #004d73;
+}
+  
+.find-present-container {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+  
+
+.find-present-container input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #b3e0ff;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%; 
+    box-sizing: border-box;
+}
+  
+
+.find-present-container button {
+    padding: 10px 20px;
+    background-color: #007b9e;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+  
+.find-present-container button:hover {
+    background-color: #004d73;
+}
+
+.presents-list {
+    padding: 0;
+    margin: 0;
+}
+
+.presents-list ul{
+    list-style-type: none;
+}
+  
+.presents-list li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+    margin-right: 35px;
+}
+  
+.presents-list li:hover {
+    background-color: #e6f7ff;
+}
+
+.friends-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; 
+}
+
+
+.friend-item {
+    display: flex;
+    justify-content: space-between; 
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+    align-items: center;
+}
+
+.friend-item button {
+    padding: 5px 8px;
+    background-color: #d9534f;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    width: 55px;
+}
+
+.friend-item button:hover {
+    background-color: #c9302c;
+}
+
+.add-friend-container input {
+    width: 100%; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-sizing: border-box; 
+}
+
+
+.add-friend-container button {
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    max-width: 200px; 
+    margin: 0 auto;
+    display: block; 
+}
+
+.add-friend-container button:hover {
+    background-color: #4cae4c;
+}
+
+.register-container input {
+    width: 100%; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-sizing: border-box; 
+}
+
+
+.register-container button {
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    max-width: 200px; 
+    margin: 20px auto 0; 
+    display: block; 
+}
+
+.register-container button:hover {
+    background-color: #4cae4c;
+}
+
+
+.login-container input {
+    width: 100%; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-sizing: border-box; 
+}
+
+
+.login-container button {
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    max-width: 200px; 
+    margin: 20px auto 0; 
+    display: block; 
+}
+
+.login-container button:hover {
+    background-color: #4cae4c;
+}
+
+
+.learn-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.learn-container h2 {
+    font-size: 28px;
+    color: #333333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.learn-container ol {
+    padding-left: 0;
+    list-style: none; 
+}
+
+.learn-container ol li {
+    position: relative;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #555555;
+    border-left: 3px solid #007BFF; 
+}
+
+.learn-container p {
+    font-size: 20px;
+    color: #007BFF; 
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.presents-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+
+
+.presents-container ul {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+}
+
+.presents-container ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    color: #555555;
+}
+
+.presents-container ul li p {
+    margin: 0;
+}
+
+.presents-container ul li button {
+    padding: 8px 16px;
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    max-width: 60px;
+}
+
+.presents-container ul li button:hover {
+    background-color: #0056b3;
+}

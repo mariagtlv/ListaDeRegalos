@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { backendUrl } from "../Globals";
-import { Button, Card, Col, Input, Row, Alert } from 'antd'
+
 
 let AddFriendComponent = (props) => {
     let {getMyFriends,createNotification} = props
@@ -24,16 +24,16 @@ let AddFriendComponent = (props) => {
         }
     }
     return (
-        <Row align="middle" style={{minHeight:"70vh"}} justify="center">
-            
-            <Col>
-                {message!="" && <Alert type='error' message={message}/>}
-                <Card title="Add Friend" style={{width: "500px"}}>
-                    <Input  size='large' type='text' placeholder='Email' onChange={(e)=>setName(e.currentTarget.value)}/>
-                    <Button style={{marginTop: "10px"}} type='primary' onClick={addFriend} block>Add</Button>
-                </Card>
-            </Col>
-        </Row>
+        <div className="add-friend-container">
+            <h2>Add a friend</h2>
+            {message!=""&&<p>{message}</p>}
+            <form>
+                <div>
+                    <input type="text" placeholder="email" onChange={e=>setName(e.currentTarget.value)}/>
+                </div>
+                <button onClick={addFriend}>Add</button>
+            </form>
+        </div>
     )
 }
 
