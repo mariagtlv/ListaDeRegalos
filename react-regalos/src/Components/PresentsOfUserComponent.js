@@ -46,13 +46,12 @@ let PresentsOfUserComponent = (props) =>{
             navigate("/present/"+id)
         }else{
             let jsonData = await response.json()
-            setMessage(jsonData.error)
-            
+            createNotification(jsonData.error,"error")
         }
     }
     return (
         <>
-            <Row align="middle" justify="center" style={{marginTop:"50px"}}>
+            <Row align="middle" justify="center" style={{marginTop:"50px", marginBottom: "20px"}}>
                 <Col>
                     <Card title="Find Present by User" style={{width: "500px"}}>
                         <Input  size='large' type='text' placeholder='Email' onChange={(e)=>setEmail(e.currentTarget.value)}/>
@@ -62,7 +61,7 @@ let PresentsOfUserComponent = (props) =>{
             </Row>
             {presents.length>0 && (
                 
-                <List size="large" header={<h2>Presents by {email}</h2>} bordered dataSource={presents} renderItem={(p)=>(
+                <List size="large" header={<h2>Presents by {presents[0].email}</h2>} bordered dataSource={presents} renderItem={(p)=>(
                     <List.Item>
                             <p>{p.name}</p>
                             <Button onClick={()=>giftPresent(p.id)}>Gift</Button>

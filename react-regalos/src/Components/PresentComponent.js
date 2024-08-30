@@ -59,6 +59,9 @@ let PresentComponent = ( props)=>{
                 <Descriptions.Item label="Posted by">{present.email}</Descriptions.Item>
                 {present.chosenBy!=null && <Descriptions.Item label="Gifted by">{present.chosenBy}</Descriptions.Item>}
                 
+                {localStorage.getItem("email")==present.email && (
+
+                
                 <Descriptions.Item span={3}>
                     <Row justify="center" style={{width: "100%"}}>
                         <Col style={{margin: "10px"}}>
@@ -70,6 +73,7 @@ let PresentComponent = ( props)=>{
                     </Row>
                     
                 </Descriptions.Item>
+                )}
                 
             </Descriptions>
         </div>

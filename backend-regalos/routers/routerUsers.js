@@ -11,13 +11,13 @@ routerUsers.post("/",async(req,res)=>{
     let errors = []
 
     if (email==undefined||email=="")
-        errors.push("no email")
+        errors.push("No email")
     if (name==undefined||name=="")
-        errors.push("no name")
+        errors.push("No name")
     if (password==undefined||password=="")
-        errors.push("no password")
+        errors.push("No password")
     if (password.length<5)
-        errors.push("password shorter than 5")
+        errors.push("Password shorter than 5 characters")
     if(errors.length>0)
         return res.status(400).json({errors:errors})
 
@@ -29,12 +29,12 @@ routerUsers.post("/",async(req,res)=>{
     
             if(userWithEmail.length>0){
                 database.disconnect()
-                return res.status(400).json({error: 'already user with that email'})
+                return res.status(400).json({error: 'Already a user with that email'})
             }
             insertedUser = await database.query("INSERT INTO USERS (email,name,password) VALUES (?,?,?)",[email,name,password])
         }catch(e){
             database.disconnect()
-            return res.status(400).json({error: 'problem inserting the user'})
+            return res.status(400).json({error: 'Problem inserting the user'})
         }
         database.disconnect()
         res.json({insertedUser:insertedUser})
@@ -47,9 +47,9 @@ routerUsers.post("/login",async(req,res)=>{
     let errors = []
 
     if(email==undefined||email=="")
-        errors.push("no email")
+        errors.push("No email")
     if(password==undefined||password=="")
-        errors.push("no password")
+        errors.push("No password")
 
     if(errors.length>0)
         return res.status(400).json({errors:errors})
@@ -63,7 +63,7 @@ routerUsers.post("/login",async(req,res)=>{
         database.disconnect()
         if(selectedUsers.length==0){
             
-            return res.status(401).json({error:'invalid email or password'})
+            return res.status(401).json({error:'Invalid email or password'})
         }
         apiKey=jwt.sign({email:email,
             id:selectedUsers[0].id,
@@ -71,7 +71,7 @@ routerUsers.post("/login",async(req,res)=>{
         },"secret")
     }catch(e){
         database.disconnect()
-        return res.status(400).json({error:'error in login'})
+        return res.status(400).json({error:'Error in login'})
     }
 
     activeApiKeys.push(apiKey)
@@ -85,7 +85,7 @@ routerUsers.post("/disconnect",(req,res)=>{
     let apiKey = req.query.apiKey
 
     if(apiKey==undefined)
-        return res.status(400).json({error: "no apiKey"})
+        return res.status(400).json({error: "No apiKey"})
     let index = activeApiKeys.indexOf(apiKey)
     if(index==-1)
         return res.status(400).json({error: "apiKey not registered"})

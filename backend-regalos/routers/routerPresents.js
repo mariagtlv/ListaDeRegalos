@@ -11,17 +11,17 @@ routerPresents.post("/",async (req,res)=>{
 
     let errors=[]
     if(name==undefined||name=="")
-        errors.push("no name")
+        errors.push("No name")
     if(description==undefined||description=="")
-        errors.push("no description")
+        errors.push("No description")
     if(url==undefined||url=="")
-        errors.push("no url")
+        errors.push("No url")
     if(price==undefined||price=="")
-        errors.push("no price")
+        errors.push("No price")
     price=parseFloat(price)
 
     if(errors.length>0)
-        return res.status(400).json({error: "something went wrong"})
+        return res.status(400).json({error: "Something went wrong"})
 
     database.connect()
 
@@ -30,7 +30,7 @@ routerPresents.post("/",async (req,res)=>{
         insertedGift=await database.query("INSERT INTO gift(name,url,description,price,email)VALUES (?,?,?,?,?)",[name,url,description,price,req.infoApiKey.email])
     }catch(e){
         database.disconnect()
-        return res.status(400).json({error: 'error'})
+        return res.status(400).json({error: 'Could not insert the gift'})
     }
     database.disconnect()
     res.json(insertedGift)
@@ -50,17 +50,17 @@ routerPresents.get("/",async (req,res)=>{
             userGifts=await database.query("SELECT * FROM gift WHERE email=?",[myEmail])
         }catch(e){
             database.disconnect()
-            return res.status(400).json({error: 'error'})
+            return res.status(400).json({error: 'Could not get the gifts'})
         }
     }else{
         try{
             relationship = await database.query("SELECT * FROM friends WHERE emailMainUser=? AND emailFriend=?",[userEmail,myEmail])
             if(relationship.length==0)
-                return res.status(400).json({error:"you are not friends"})
+                return res.status(400).json({error:"You are not friends"})
             userGifts=await database.query("SELECT * FROM gift WHERE email=?",[userEmail])
         }catch(e){
             database.disconnect()
-            return res.status(400).json({error: 'error'})
+            return res.status(400).json({error: 'Could not get the gifts'})
         }
     }
     
@@ -78,7 +78,7 @@ routerPresents.get("/:id",async (req,res)=>{
         userGift=await database.query("SELECT * FROM gift WHERE id=?",[id])
     }catch(e){
         database.disconnect()
-        return res.status(400).json({error: 'error'})
+        return res.status(400).json({error: 'Could not find the gift'})
     }
     database.disconnect()
     res.json(userGift)
@@ -87,7 +87,7 @@ routerPresents.get("/:id",async (req,res)=>{
 routerPresents.delete("/:id",async(req,res)=>{
     let id = req.params.id
     if(id==undefined)
-        return res.status(400).json({error: "no id"})
+        return res.status(400).json({error: "No id"})
 
     let email=req.infoApiKey.email
 
@@ -97,11 +97,11 @@ routerPresents.delete("/:id",async(req,res)=>{
         let gift = await database.query("SELECT * FROM gift WHERE id=? AND email=?",[id,email])
         if(gift.length==0){
             database.disconnect()
-            return res.status(400).json({error:"no gift with that id"})
+            return res.status(400).json({error:"No gift with that id"})
         }
         await database.query("DELETE FROM gift WHERE id=?",[gift[0].id])
     }catch(e){
-        return res.status(400).json({error: "something went wrong"})
+        return res.status(400).json({error: "Something went wrong"})
     }
 
     database.disconnect()
@@ -111,7 +111,7 @@ routerPresents.delete("/:id",async(req,res)=>{
 routerPresents.put("/:id",async(req,res)=>{
     let id = req.params.id
     if(id==undefined)
-        return res.status(400).json({error: "no id"})
+        return res.status(400).json({error: "No id"})
 
     let email=req.infoApiKey.email
 
@@ -121,10 +121,10 @@ routerPresents.put("/:id",async(req,res)=>{
         gift = await database.query("SELECT * FROM gift WHERE id=?",[id])
         if(gift.length==0){
             database.disconnect()
-            return res.status(400).json({error:"no gift with that id for that user"})
+            return res.status(400).json({error:"No gift with that id for that user"})
         }
     }catch(e){
-        return res.status(400).json({error: "something went wrong"})
+        return res.status(400).json({error: "Something went wrong"})
     }
     
     let updatedItem=null
@@ -150,14 +150,15 @@ routerPresents.put("/:id",async(req,res)=>{
         try{
             updatedItem = await database.query("UPDATE gift SET name=?,description=?,url=?,price=? WHERE id=?",[name,description,url,price,id])
         }catch(e){
-            return res.status(400).json({error: "something went wrong"})
+            return res.status(400).json({error: "Something went wrong"})
         }
     }else{
-        
+        if(gift[0].chosenBy!=null)
+            return res.status(400).json({error: "Someone is already gifting this present"})
         try{
             updatedItem = await database.query("UPDATE gift SET chosenBy=? WHERE id=?",[email,id])
         }catch(e){
-            return res.status(400).json({error: "something went wrong"})
+            return res.status(400).json({error: "Something went wrong"})
         }
     }
 
