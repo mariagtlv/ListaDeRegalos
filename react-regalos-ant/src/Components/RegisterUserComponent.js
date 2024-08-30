@@ -58,11 +58,11 @@ let RegisterUserComponent = () =>{
             <Col>
                 {message!="" && <Alert type='error' message={message}/>}
                 <Card title="Register" style={{width: "500px"}}>
-                    <Input type="text" placeholder="email" onChange={(e)=>setEmail(e.currentTarget.value)}/>
+                    <Input type="text" style={{marginBottom: "10px"}} placeholder="email" onChange={(e)=>setEmail(e.currentTarget.value)}/>
                     {error.email && <Text type="danger">{error.email}</Text>}
-                    <Input type="text" placeholder="name" onChange={(e)=>setName(e.currentTarget.value)}/>
+                    <Input type="text" style={{marginBottom: "10px"}}  placeholder="name" onChange={(e)=>setName(e.currentTarget.value)}/>
                     {error.name && <Text type="danger">{error.email}</Text>}
-                    <Input type="text" placeholder="password" onChange={(e)=>setPassword(e.currentTarget.value)}/>
+                    <Input type="text"  style={{marginBottom: "10px"}} placeholder="password" onChange={(e)=>setPassword(e.currentTarget.value)}/>
                     {error.password && <Text type="danger">{error.email}</Text>}
                     <Button type="primary" onClick={registerUser} block>Register</Button>
                 </Card>

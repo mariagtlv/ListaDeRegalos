@@ -16,7 +16,7 @@ let AddFriendComponent = (props) => {
         })
 
         if(response.ok){
-            createNotification("Friend added")
+            createNotification("Friend added","success")
             getMyFriends()
         }else{
             let jsonData = await response.json()

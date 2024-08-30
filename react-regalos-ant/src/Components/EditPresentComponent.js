@@ -42,7 +42,7 @@ let EditPresentComponent = (props )=>{
             body: JSON.stringify(present)
         })
         if(response.ok){
-            createNotification("Present correctly updated")
+            createNotification("Present correctly updated","success")
             navigate("/myPresents")
         }else{
             let jsonData = await response.json()
@@ -56,10 +56,10 @@ let EditPresentComponent = (props )=>{
             <Col>
                 {message!="" && <Alert type='error' message={message}/>}
                 <Card title="Edit Present" style={{width: "500px"}}>
-                    <Input  size='large' type='text' placeholder='Name' value={present.name} onChange={(e)=>{changeProperty("name",e)}}/>
-                    <Input  size='large' type='text' placeholder='Description' value={present.description} onChange={(e)=>{changeProperty("description",e)}}/>
-                    <Input  size='large' type='text' placeholder='Url' value={present.url} onChange={(e)=>{changeProperty("url",e)}}/>
-                    <Input  size='large' type='number' placeholder='Price' value={present.price} onChange={(e)=>{changeProperty("price",e)}}/>
+                    <Input  style={{marginBottom: "10px"}}   size='large' type='text' placeholder='Name' value={present.name} onChange={(e)=>{changeProperty("name",e)}}/>
+                    <Input  style={{marginBottom: "10px"}}  size='large' type='text' placeholder='Description' value={present.description} onChange={(e)=>{changeProperty("description",e)}}/>
+                    <Input   style={{marginBottom: "10px"}} size='large' type='text' placeholder='Url' value={present.url} onChange={(e)=>{changeProperty("url",e)}}/>
+                    <Input  style={{marginBottom: "10px"}}  size='large' type='number' placeholder='Price' value={present.price} onChange={(e)=>{changeProperty("price",e)}}/>
                     <Button style={{marginTop: "10px"}} type='primary' onClick={editPresent} block>Edit</Button>
                 </Card>
             </Col>
